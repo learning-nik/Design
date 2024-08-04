@@ -11,6 +11,8 @@ public class TestLocker {
 
 	public static void main(String[] args) {
 
+		System.out.println("I AM HERE");
+
 		// Add lockers
 
 		lockerController.addLocker(buildLocker());

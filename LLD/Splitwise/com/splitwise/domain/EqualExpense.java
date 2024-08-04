@@ -9,10 +9,8 @@ public class EqualExpense extends ExpenseCalculatorType {
 		int totalMembers = expense.getBorrowers().size() + 1;
 		int perHeadAmount = expense.getTotalAmount() / totalMembers;
 
-		System.out.println(expense);
-		expense.getBorrowers().forEach(borrower -> {
-			borrower.setPerheadAmount(perHeadAmount);
-		});
+		System.out.println("Per head amount is" + perHeadAmount);
+		expense.getBorrowers().forEach(borrower -> borrower.setPerheadAmount(perHeadAmount));
 
 	}
 

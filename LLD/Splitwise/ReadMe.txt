@@ -1,4 +1,4 @@
-Three main tables :
+Three main tables :USER , EXPENSE , EXPENSE_ENTRY
 
 USER
 ID   	  - 	NAME 
@@ -10,7 +10,7 @@ EXPENSE
 
 ID ,   ,  LENDER  , 	BORROWERS , 		 , EXPENSE_TYPE  , AMOUNT
 id_1   ,  id_nik  , {id_poddar , id_rishi}   ,  EQUAL		 , 900
-id_2   ,  id_rishi , {id_nik , id_poddar}   ,   EQUAL		 , 600
+id_2   ,  id_rishi , {id_nik , id_poddar}   ,   EQUAL		 , 1200
 
 
 EXPENSE_ENTRY
@@ -19,7 +19,7 @@ After Expense id_1
 
 ENTRY_ID , 				EXPENSE_ID ,  LENDER , BORROWER   , AMOUNT 
 id_nik-id_rishi         id_1       ,  id_nik  , id_rishi  , 300
-id_nik-id_poddar        id_1       ,  id_nik  , id_poddar , 1200    
+id_nik-id_poddar        id_1       ,  id_nik  , id_poddar , 300    
 
 After Expense id_2
 
@@ -33,3 +33,6 @@ id_nik-id_rishi         id_2       ,  id_rishi  ,   id_nik      ,    100
 
 
     
+    
+    
+ 

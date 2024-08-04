@@ -20,8 +20,6 @@ public class SplitwiseService {
 
 	private Map<String, ExpenseEntry> expensesMap = new HashMap<>();
 
-	//private List<ExpenseEntry> expenseEntries = new ArrayList<>();
-
 	public void registerUser(User user) {
 		users.add(user);
 
@@ -31,63 +29,13 @@ public class SplitwiseService {
 
 		expenses.add(expense);
 
-		// expenses.forEach(expense1 -> System.out.println(expense1));
-
 		// add in expense entry
 
 		updatePerHeadAmount(expense);
-		
-		buildExpenseEntry(expense.getBorrowers(), expense.getLender(),expense.getId());
 
-		//buildUsingList(borrowers, lender, expenseId, perHeadAmount);
+		buildExpenseEntry(expense.getBorrowers(), expense.getLender(), expense.getId());
 
 	}
-
-	/*private void buildUsingList(List<String> borrowers, String lender, final String expenseId, int perHeadAmount) {
-		borrowers.forEach(borrower -> {
-	
-			System.out.println(borrower + ":borrower");
-	
-			ExpenseEntry entry = new ExpenseEntry();
-			entry.setExpenseId(expenseId);
-			entry.setId(lender + "#" + borrower);
-			entry.setAmount(perHeadAmount);
-			entry.setBorrower(borrower);
-			entry.setLender(lender);
-	
-			for (ExpenseEntry oldEntry : expenseEntries) {
-				System.out.println(oldEntry.getId());
-				System.out.println(lender + "#" + borrower);
-				if (oldEntry.getId().equals(lender + "#" + borrower)
-						|| oldEntry.getId().equals(borrower + "#" + lender)) {
-					System.out.println("Entry Matched::" + lender + borrower);
-					if (oldEntry.getLender().equals(lender)) {
-						System.out.println("Lenders Matched");
-						entry.setAmount(perHeadAmount + oldEntry.getAmount());
-					} else {
-						if (oldEntry.getAmount() - perHeadAmount > 0) {
-							System.out.println("Lender has to be changed");
-							entry.setAmount(oldEntry.getAmount() - perHeadAmount);
-							entry.setBorrower(lender);
-							entry.setLender(borrower);
-						} else {
-							System.out.println("Lender has not to be changed");
-							entry.setAmount(perHeadAmount - oldEntry.getAmount());
-						}
-					}
-					expenseEntries.remove(oldEntry);
-					break;
-				}
-	
-			}
-			expenseEntries.add(entry);
-	
-		});
-	
-		expenseEntries.forEach(entry -> System.out.println(entry));
-	
-		System.out.println("--------------Entry Completed----------");
-	}*/
 
 	private void updatePerHeadAmount(Expense expense) {
 
@@ -103,9 +51,11 @@ public class SplitwiseService {
 			final ExpenseEntry entry = getExpenseEntry(lender, expenseId, borrower);
 
 			final int perHeadAmount = entry.getAmount();
-			// For each entry , check if it exists already in the map for the same set of borrower and lender.
+			// For each entry , check if it exists already in the map for the same set of
+			// borrower and lender.
 			// If Yes , update the entry otherwise add the entry in the map.
-			if (expensesMap.containsKey(lender + "#" + borrower.getUserId()) || expensesMap.containsKey(borrower.getUserId() + "#" + lender)) {
+			if (expensesMap.containsKey(lender + "#" + borrower.getUserId())
+					|| expensesMap.containsKey(borrower.getUserId() + "#" + lender)) {
 				ExpenseEntry oldEntry;
 				String id = lender + "#" + borrower.getUserId();
 				if (expensesMap.get(id) != null) {
@@ -132,13 +82,13 @@ public class SplitwiseService {
 					}
 				}
 
-				System.out.println("Entry is::::"+entry);
+				System.out.println("Entry is::::" + entry);
 				expensesMap.put(id, entry);
 
 			} else {
 				System.out.println("This is a first time entry ");
 				System.out.println(lender + "#" + borrower.getUserId());
-				System.out.println("Entry is::::"+entry);
+				System.out.println("Entry is::::" + entry);
 				expensesMap.put(lender + "#" + borrower.getUserId(), entry);
 			}
 		}
@@ -164,10 +114,12 @@ public class SplitwiseService {
 		System.out.println("-------------------------------------------------");
 		System.out.println("Final Status is");
 
-		/*for (Map.Entry<String, ExpenseEntry> entry : expensesMap.entrySet()) {
-			System.out.println(entry.getValue().getLender() + " getsBack " + entry.getValue().getAmount() + "Rs from "
-					+ entry.getValue().getBorrower());
-		}*/
+		/*
+		 * for (Map.Entry<String, ExpenseEntry> entry : expensesMap.entrySet()) {
+		 * System.out.println(entry.getValue().getLender() + " getsBack " +
+		 * entry.getValue().getAmount() + "Rs from " + entry.getValue().getBorrower());
+		 * }
+		 */
 
 		expensesMap.forEach((key, value) -> {
 			System.out.println(value.getLender() + " getsBack " + value.getAmount() + "Rs from " + value.getBorrower());

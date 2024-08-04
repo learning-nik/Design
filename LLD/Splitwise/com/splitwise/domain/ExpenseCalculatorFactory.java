@@ -2,6 +2,10 @@ package com.splitwise.domain;
 
 public class ExpenseCalculatorFactory {
 
+	private ExpenseCalculatorFactory() {
+
+	}
+
 	public static ExpenseCalculatorType getExpense(ExpenseType expenseType) {
 
 		if (ExpenseType.EQUAL.equals(expenseType)) {
@@ -12,7 +16,8 @@ public class ExpenseCalculatorFactory {
 
 			return new PercentageExpense();
 
-		} else {
+		} else if (ExpenseType.EXACT.equals(expenseType)) {
+			return new ExactExpense();
 
 		}
 		return null;

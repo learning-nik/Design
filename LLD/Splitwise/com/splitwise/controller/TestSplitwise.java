@@ -24,9 +24,13 @@ public class TestSplitwise {
 
 		System.out.println("SPLITWISE STARTED");
 
-		useCase1();
+		//useCase1();
 
 		//	useCase2();
+		
+		//useCaseWithPercentage();
+		
+		useCaseWithExact();
 
 		controller.getFinalAllUsersStatus();
 
@@ -51,6 +55,53 @@ public class TestSplitwise {
 	
 		controller.addExpense(borrowers2, "komal@ivanti.com", "Switch", 200);
 	}*/
+
+	private static void useCaseWithExact() {
+
+		controller.registerUser("nikhil@ivanti.com", "Nikhil");
+		controller.registerUser("rishi@ivanti.com", "Rishi");
+		controller.registerUser("poddar@ivanti.com", "Poddar");
+
+		// Expense 1
+		
+		List<UserExpenseMapping> borrowers = new ArrayList<>();
+		
+		UserExpenseMapping borrower1 = new UserExpenseMapping();
+		borrower1.setUserId("rishi@ivanti.com");
+		borrower1.setPerheadAmount(45);
+		
+		
+		UserExpenseMapping borrower2 = new UserExpenseMapping();
+		borrower2.setUserId("poddar@ivanti.com");
+		borrower2.setPerheadAmount(40);
+		
+		borrowers.add(borrower1);
+		borrowers.add(borrower2);
+		
+		controller.addExpense(borrowers, "nikhil@ivanti.com", "Movie", 100, ExpenseType.EXACT);
+		
+		// ---------------------------------------------------------------------------------
+		// ---------------------------Expense 2---------------------------
+		
+//		nikhil@ivanti.com getsBack 40Rs from poddar@ivanti.com
+//		nikhil@ivanti.com getsBack 45Rs from rishi@ivanti.com
+
+		List<UserExpenseMapping> borrowers3 = new ArrayList<>();
+		
+		UserExpenseMapping borrower3 = new UserExpenseMapping();
+		borrower1.setUserId("nikhil@ivanti.com");
+		borrower1.setPerheadAmount(60);
+		
+		
+		UserExpenseMapping borrower4 = new UserExpenseMapping();
+		borrower2.setUserId("poddar@ivanti.com");
+		borrower2.setPerheadAmount(25);
+		
+		borrowers3.add(borrower3);
+		borrowers3.add(borrower4);
+		
+		controller.addExpense(borrowers, "rishi@ivanti.com", "Movie", 100, ExpenseType.EXACT);
+	}
 
 	private static void useCase1() {
 		controller.registerUser("nikhil@ivanti.com", "Nikhil");
@@ -95,6 +146,55 @@ public class TestSplitwise {
 		controller.addExpense(borrowers2, "poddar@ivanti.com", "Movie3", 780, ExpenseType.EQUAL);
 		
 		//System.out.println("----Expense Entries are--------");
+		
+		
+	}
+	
+	private static void useCaseWithPercentage() {
+		controller.registerUser("nikhil@ivanti.com", "Nikhil");
+		controller.registerUser("rishi@ivanti.com", "Rishi");
+		controller.registerUser("poddar@ivanti.com", "Poddar");
+
+		// Expense 1
+		
+		List<UserExpenseMapping> borrowers = new ArrayList<>();
+		
+		UserExpenseMapping borrower1 = new UserExpenseMapping();
+		borrower1.setUserId("rishi@ivanti.com");
+		borrower1.setPercentage(45);
+		
+		
+		UserExpenseMapping borrower2 = new UserExpenseMapping();
+		borrower2.setUserId("poddar@ivanti.com");
+		borrower2.setPercentage(45);
+		
+		borrowers.add(borrower1);
+		borrowers.add(borrower2);
+		
+		controller.addExpense(borrowers, "nikhil@ivanti.com", "Movie", 100, ExpenseType.PERCENTAGE);
+		
+		// ---------------------------------------------------------------------------------
+		// ---------------------------Expense 2---------------------------
+		
+//		nikhil@ivanti.com getsBack 45Rs from poddar@ivanti.com
+//		nikhil@ivanti.com getsBack 10Rs from rishi@ivanti.com
+
+		List<UserExpenseMapping> borrowers3 = new ArrayList<>();
+		
+		UserExpenseMapping borrower3 = new UserExpenseMapping();
+		borrower1.setUserId("nikhil@ivanti.com");
+		borrower1.setPercentage(60);
+		
+		
+		UserExpenseMapping borrower4 = new UserExpenseMapping();
+		borrower2.setUserId("poddar@ivanti.com");
+		borrower2.setPercentage(25);
+		
+		borrowers3.add(borrower3);
+		borrowers3.add(borrower4);
+		
+		controller.addExpense(borrowers, "rishi@ivanti.com", "Movie", 100, ExpenseType.PERCENTAGE);
+
 		
 		
 	}
