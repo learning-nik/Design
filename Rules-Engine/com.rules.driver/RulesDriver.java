@@ -4,12 +4,14 @@ import com.rules.common.Cart;
 import com.rules.common.Product;
 import com.rules.common.ProductCategory;
 import com.rules.common.ProductItem;
+
 import com.rules.service.RulesService;
 import java.util.List;
 
 public class RulesDriver {
 
     public static void main(String[] args) {
+
 
         Product product1 = new Product("Shirt", ProductCategory.CLOTHES);
         Product product2 = new Product("Paracematol", ProductCategory.MEDICINE);
